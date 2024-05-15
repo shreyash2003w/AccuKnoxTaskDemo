@@ -6,14 +6,14 @@ import { addBookmark, removeBookmark } from "./app/store";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./components/ProductCard";
 import SearchBar from "./components/SearchBar";
+import { fetchProducts } from "./api";
 
 
-
-const fetchProducts = async () => {
-  const response = await fetch("https://dummyjson.com/products");
-  const data = await response.json();
-  return data.products;
-};
+// const fetchProducts = async () => {
+//   const response = await fetch("https://dummyjson.com/products");
+//   const data = await response.json();
+//   return data.products;
+// };
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");

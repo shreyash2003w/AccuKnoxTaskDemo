@@ -4,18 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBookmark,removeBookmark } from "./app/store";
 import Navbar from "./components/Navbar";
 import BookmarkButton from "./components/BookmarkButton";
+import { fetchProductByID } from "./api";
 const ProductDetails = () => {
   const params = useParams();
 
   const dispatch = useDispatch();
 
-  const fetchProduct = async () => {
-    const response = await fetch(
-      `https://dummyjson.com/products/${params.productId}`
-    );
-    const data = await response.json();
-    return data;
-  };
+  // const fetchProduct = async () => {
+  //   const response = await fetch(
+  //     `https://dummyjson.com/products/${params.productId}`
+  //   );
+  //   const data = await response.json();
+  //   return data;
+  // };
 
   const bookmarks = useSelector((state) => state.bookmarks.bookmarks);
   console.log(bookmarks);
@@ -25,7 +26,7 @@ const ProductDetails = () => {
     data: product,
   } = useQuery({
     queryKey: ["product", params.productId],
-    queryFn: fetchProduct,
+    queryFn: ()=>fetchProductByID(params.productId),
     // staleTime: 10000,
   });
 
